@@ -5,13 +5,13 @@ const checkCarId = async (req, res, next) => {
   // DO YOUR MAGIC
   try {
     const car = await Car.getById(req.params.id)
-    if (!car) {
-      next({
-        status: 404,
-        message: 'not found at all'
+    console.log(car)
+    if (!car || car === undefined) {
+      res.status(404).json({
+        message: "id is not found"
       })
     } else {
-      req.body = car
+      req.car = car
       next()
     }
   } catch (err) {
@@ -21,20 +21,16 @@ const checkCarId = async (req, res, next) => {
 
 const checkCarPayload = (req, res, next) => {
   // DO YOUR MAGIC
-  if (!req.body.vin) return res.json({
-    status: 400,
+  if (!req.body.vin) return res.status(400).json({
     message: 'vin is missing'
   })
-  if (!req.body.make) return res.json({
-    status: 400,
+  if (!req.body.make) return res.status(400).json({
     message: 'make is missing'
   })
-  if (!req.body.model) return res.json({
-    status: 400,
+  if (!req.body.model) return res.status(400).json({
     message: 'model is missing'
   })
-  if (!req.body.mileage) return res.json({
-    status: 400,
+  if (!req.body.mileage) return res.status(400).json({
     message: 'mileage is missing'
   })
   next()
@@ -45,8 +41,7 @@ const checkVinNumberValid = (req, res, next) => {
   if (vin.validate(req.body.vin)) {
     next()
   } else {
-    res.json({
-      status: 400,
+    res.status(400).json({
       message: `vin ${req.body.vin} is invalid`
     })
   }

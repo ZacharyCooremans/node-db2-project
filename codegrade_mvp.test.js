@@ -95,32 +95,32 @@ describe('server.js', () => {
       expect(res3.body).toMatchObject({ id: 3, ...cars[2] })
     }, 500)
     test('[7] responds with a 400 and proper error on missing vin', async () => {
-      const { vin, ...badCar } = cars[0] // eslint-disable-line
-      const res = await request(server).post('/api/cars').send(badCar)
+      const { vin, ...badcar } = cars[0] // eslint-disable-line
+      const res = await request(server).post('/api/cars').send(badcar)
       expect(res.status).toBe(400)
       expect(res.body).toHaveProperty('message', 'vin is missing')
     }, 500)
     test('[8] responds with a 400 and proper error on missing make', async () => {
-      const { make, ...badCar } = cars[0] // eslint-disable-line
-      const res = await request(server).post('/api/cars').send(badCar)
+      const { make, ...badcar } = cars[0] // eslint-disable-line
+      const res = await request(server).post('/api/cars').send(badcar)
       expect(res.status).toBe(400)
       expect(res.body).toHaveProperty('message', 'make is missing')
     }, 500)
     test('[9] responds with a 400 and proper error on missing model', async () => {
-      const { model, ...badCar } = cars[0] // eslint-disable-line
-      const res = await request(server).post('/api/cars').send(badCar)
+      const { model, ...badcar } = cars[0] // eslint-disable-line
+      const res = await request(server).post('/api/cars').send(badcar)
       expect(res.status).toBe(400)
       expect(res.body).toHaveProperty('message', 'model is missing')
     }, 500)
     test('[10] responds with a 400 and proper error on missing mileage', async () => {
-      const { mileage, ...badCar } = cars[0] // eslint-disable-line
-      const res = await request(server).post('/api/cars').send(badCar)
+      const { mileage, ...badcar } = cars[0] // eslint-disable-line
+      const res = await request(server).post('/api/cars').send(badcar)
       expect(res.status).toBe(400)
       expect(res.body).toHaveProperty('message', 'mileage is missing')
     }, 500)
     test('[11] responds with a 400 and proper error on invalid vin', async () => {
-      const badCar = { ...cars[0], vin: 'abc' }
-      const res = await request(server).post('/api/cars').send(badCar)
+      const badcar = { ...cars[0], vin: 'abc' }
+      const res = await request(server).post('/api/cars').send(badcar)
       expect(res.status).toBe(400)
       expect(res.body).toHaveProperty('message', 'vin abc is invalid')
     }, 500)

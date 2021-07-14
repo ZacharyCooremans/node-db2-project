@@ -1,6 +1,6 @@
 exports.up = function (knex) {
   // DO YOUR MAGIC
-  return knex.schema.createTable('Cars', table => {
+  return knex.schema.createTable('cars', table => {
     table.increments('id')
 
     table.text('vin', 17)
@@ -24,5 +24,5 @@ exports.up = function (knex) {
 
 exports.down = function (knex) {
   // DO YOUR MAGIC
-  return knex.schema.dropTableIfExists('Cars')
+  return knex.schema.dropTableIfExists('cars')
 };

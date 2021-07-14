@@ -1,12 +1,12 @@
 const express = require("express")
-const CarsRouter = require('./cars/cars-router')
+const carsRouter = require('./cars/cars-router')
 
 const server = express()
 
 // DO YOUR MAGIC
 server.use(express.json())
 
-server.use('/api/cars', CarsRouter)
+server.use('/api/cars', carsRouter)
 
 // server.use('*', (req, res, next) => {
 //     next({ status: 404, message: 'not found!' })
